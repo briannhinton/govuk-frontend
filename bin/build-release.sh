@@ -26,9 +26,26 @@ if [[ $continue_prompt != 'y' ]]; then
     exit 0
 fi
 
+# Run test. This currently compiles everything to the public folder.
+# Later, the dist build compiles everything again, to the dist folder.
+# Additionally, the package build compiles the javascript again.
+# Would be good to split these to avoid this.
 npm run test
-npm run build:package
-npm run build:dist
+# Build package
+npm run check-nvmrc
+npm run clean:package
+npm run lint
+npm run compile:javascript
+npm run copy:package
+npm run test:build:package
+# Build dist
+npm run check-nvmrc
+npm run clean:dist
+npm run lint
+npm run compile
+npm run copy:dist
+npm run update-asset-version
+npm run test:build:dist
 
 ALL_PACKAGE_VERSION=$(node -p "require('./package/package.json').version")
 TAG="v$ALL_PACKAGE_VERSION"

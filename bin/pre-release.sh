@@ -20,7 +20,12 @@ fi
 git checkout -b $BRANCH_NAME
 
 # Build the package as normal
-npm run build:package
+npm run check-nvmrc
+npm run clean:package
+npm run lint
+npm run compile:javascript
+npm run copy:package
+npm run test:build:package
 
 # Check if the new built package has anything new to commit
 if [[ -n $(git status --porcelain) ]]; then
