@@ -1,0 +1,12 @@
+// const { lintJS, lintSCSS } = require('../tasks/lint.js')
+// const { compileJS, compileSCSS } = require('../tasks/compile.js')
+// const { copyStylesToPublic, copyJStoPublic } = require('../tasks/copy.js')
+// const buildSassdocs = require('../tasks/sassdoc.js')
+
+// lintJS()
+// lintSCSS()
+// compileJS()
+// compileSCSS()
+// copyStylesToPublic()
+// copyJStoPublic()
+// buildSassdocs()
