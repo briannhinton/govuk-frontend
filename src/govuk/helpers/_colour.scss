@@ -29,7 +29,7 @@
 /// @access public
 
 @function govuk-colour($colour, $legacy: false) {
-  @if $govuk-use-legacy-palette and $legacy {
+  @if $_govuk-use-legacy-palette and $legacy {
     @if type-of($legacy) == "color" {
       @return $legacy;
     }

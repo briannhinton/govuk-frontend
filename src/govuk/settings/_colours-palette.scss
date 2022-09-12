@@ -7,6 +7,17 @@
 /// @group settings/colours
 ////
 
+/// Temporary public version of $_govuk-use-legacy-palette to suppress local warnings
+///
+/// @access public
+
+$govuk-use-legacy-palette: false !default;
+
+@if $govuk-use-legacy-palette == true {
+  @warn "$govuk-use-legacy-palette is deprecated. " +
+    "Support for legacy codebases will be dropped in v5.0";
+}
+
 /// Use 'legacy' colour palette
 ///
 /// Whether or not to use the colour palette from GOV.UK Elements / Frontend
@@ -14,13 +25,16 @@
 /// components from both places in a single application.
 ///
 /// @type Boolean
-/// @access public
+/// @access private
+/// @deprecated Will be removed in v5.0 with the rest of the compatibility mode
+/// suite of tools and settings
 
-$govuk-use-legacy-palette: if(
+$_govuk-use-legacy-palette: if(
   (
     $govuk-compatibility-govukfrontendtoolkit or
     $govuk-compatibility-govuktemplate or
-    $govuk-compatibility-govukelements
+    $govuk-compatibility-govukelements or
+    $govuk-use-legacy-palette
   ),
   true,
   false
@@ -102,7 +116,7 @@ $_govuk-colour-palette-legacy: (
 /// @access public
 
 $govuk-colours: if(
-  $govuk-use-legacy-palette,
+  $_govuk-use-legacy-palette,
   $_govuk-colour-palette-legacy,
   $_govuk-colour-palette-modern
 ) !default;
