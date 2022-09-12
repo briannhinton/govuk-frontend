@@ -32,7 +32,7 @@
     // Vertically align with the parent element
     position: absolute;
 
-    @if $govuk-use-legacy-font {
+    @if $_govuk-use-legacy-font {
       // Begin adjustments for font baseline offset
       // These should be removed when legacy font support is dropped
       top: -1px;
@@ -82,7 +82,7 @@
     left: 0;
   }
 
-  @if $govuk-use-legacy-font {
+  @if $_govuk-use-legacy-font {
     // Begin adjustments for font baseline offset
     // These should be removed when legacy font support is dropped
     .govuk-back-link:before {

@@ -16,7 +16,7 @@
     text-decoration: none;
     text-transform: uppercase;
 
-    @if $govuk-use-legacy-font {
+    @if $_govuk-use-legacy-font {
       // Since New Transport sits slightly higher than other common fonts.
       // We use intentionally uneven padding to make it balanced, this can be
       // removed using the version of the font that has a more common vertical spacing.

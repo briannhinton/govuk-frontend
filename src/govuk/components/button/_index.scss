@@ -273,7 +273,7 @@ $govuk-button-text-colour: govuk-colour("white") !default;
     forced-color-adjust: auto;
   }
 
-  @if $govuk-use-legacy-font {
+  @if $_govuk-use-legacy-font {
     // Begin adjustments for font baseline offset when using v1 of nta
     $offset: 2;
 
