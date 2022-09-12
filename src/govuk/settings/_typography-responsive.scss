@@ -4,6 +4,17 @@
 /// @group settings/typography
 ////
 
+/// Temporary public version of $_govuk-typography-use-rem to suppress local warnings
+///
+/// @access public
+
+$govuk-typography-use-rem: true !default;
+
+@if $govuk-typography-use-rem == false {
+  @warn "$govuk-typography-use-rem is deprecated. " +
+    "Support for legacy codebases will be dropped in v5.0";
+}
+
 /// Whether or not to define font sizes in rem, improving accessibility by
 /// allowing users to adjust the base font-size. This is enabled by default,
 /// unless any of the compatibility mode settings are enabled.
@@ -12,13 +23,16 @@
 /// project.
 ///
 /// @type Boolean
-/// @access public
+/// @access private
+/// @deprecated Will be removed in v5.0 with the rest of the compatibility mode
+/// suite of tools and settings
 
-$govuk-typography-use-rem: if(
+$_govuk-typography-use-rem: if(
   (
     $govuk-compatibility-govukfrontendtoolkit or
     $govuk-compatibility-govuktemplate or
-    $govuk-compatibility-govukelements
+    $govuk-compatibility-govukelements or
+    $govuk-typography-use-rem == false
   ),
   false,
   true
