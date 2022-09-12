@@ -174,7 +174,8 @@
 /// @param {Number | Boolean} $size Point from the spacing scale (the size as it
 ///   would appear on tablet and above). Use `false` to avoid setting a size.
 /// @param {String} $weight [regular] - Weight: `bold` or `regular`
-/// @param {Boolean} $tabular [false] - Whether to use tabular numbers or not
+/// @param {Boolean} $tabular [false] - Deprecated. Tabular number support will
+///   be removed in v5.0
 /// @param {Number} $line-height [false] - Line-height, if overriding the
 ///   default
 ///
@@ -185,8 +186,8 @@
 @mixin govuk-font($size, $weight: regular, $tabular: false, $line-height: false) {
   @if $tabular {
     // if govuk-font-family-tabular is set use $govuk-font-family-tabular
-    @if $govuk-font-family-tabular {
-      @include govuk-typography-common($font-family: $govuk-font-family-tabular);
+    @if $_govuk-font-family-tabular {
+      @include govuk-typography-common($font-family: $_govuk-font-family-tabular);
     } @else {
       @include govuk-typography-common;
       font-feature-settings: "tnum" 1;
