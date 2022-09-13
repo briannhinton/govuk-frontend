@@ -17,6 +17,12 @@ jobs:
           key: npm-cache-${{ hashFiles('package-lock.json', 'package.json') }}
           path: node_modules
 
+      - name: Cache Jest transforms
+        uses: actions/cache@v3
+        with:
+          key: jest-cache
+          path: .cache/jest
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:

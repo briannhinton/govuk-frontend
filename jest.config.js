@@ -3,6 +3,7 @@ const config = {
     {
       displayName: 'Snapshot tests',
       testMatch: ['./**/template.test.js'],
+      cacheDirectory: '<rootDir>/.cache/jest/',
       snapshotSerializers: [
         'jest-serializer-html'
       ],
@@ -13,6 +14,7 @@ const config = {
     {
       displayName: 'JavaScript behaviour tests',
       testMatch: ['./**/*.test.js', '!./**/template.test.js'],
+      cacheDirectory: '<rootDir>/.cache/jest/',
       preset: 'jest-puppeteer'
     },
     {
@@ -21,7 +23,8 @@ const config = {
         '.*.js$': 'rollup-jest'
       },
       moduleFileExtensions: ['js', 'mjs'],
-      testMatch: ['./**/*.unit.test.mjs', './**/*.unit.test.js']
+      testMatch: ['./**/*.unit.test.mjs', './**/*.unit.test.js'],
+      cacheDirectory: '<rootDir>/.cache/jest/'
     }
   ]
 }
