@@ -2,16 +2,33 @@
 
 'use strict'
 
-var fs = require('fs')
-var path = require('path')
+const fs = require('fs')
+const path = require('path')
 
-fs.readFile(path.join(__dirname, '../.nvmrc'), 'utf8', function (error, data) {
-  if (error) throw error
-  var expectedVersion = data.trim()
-  var currentVersion = process.version.replace('v', '')
+const readConfig = (configPath) => new Promise((resolve, reject) => {
+  return fs.readFile(configPath, 'utf8', function (error, config) {
+    if (error) return reject(error)
+    resolve(config.trim())
+  })
+})
+
+Promise.all([
+  readConfig(path.resolve(__dirname, '../.nvmrc')),
+  readConfig(path.resolve(__dirname, '../package.json')).then(JSON.parse)
+]).then((configs) => {
+  const configNvm = configs[0]
+  const configPkg = configs[1]
+
+  // Node.js version (via config files)
+  const expectedLts = configNvm.replace(/^lts\//, '')
+  const expectedVersion = configPkg.engines.node.replace(/^\^/, '')
+
+  // Node.js version (via running process)
+  const currentLts = process.release.lts.toLowerCase()
+  const currentVersion = process.version.replace('v', '')
 
   var versionMatchesExactly = expectedVersion === currentVersion
-  var versionMatchesMajor = expectedVersion.split('.')[0] === currentVersion.split('.')[0]
+  var versionMatchesMajor = expectedLts === currentLts
 
   if (versionMatchesExactly) {
     process.exit()
